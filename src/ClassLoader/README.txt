@@ -25,6 +25,8 @@ classLoader.exe 1 Carta.class
 => GENERAL INFORMATION
 - imprimir o nome do accessFlags (dúvida sobre quais são para imprimir)
 FAZER IF COM TODAS AS COMBINAÇÕES
+TESTAR VERSÃO E MUDANÇA DO NOME DO ARQUIVO
+"Se n é um índice válido para uma constante do tipo long ou double, então o índice n+1 é inválido!" >> é a resposta para o problema com doubles e longs?
 
 
 => CONSTANT POOL
