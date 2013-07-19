@@ -1,6 +1,8 @@
 #ifndef LOADANDSTOREINSTRUCTIONS_H
 #define LOADANDSTOREINSTRUCTIONS_H
 
+#include "Interpretador.h"
+
 int aconst_null(); /*0x01*/
 int iconst_m1(); /*0x02*/
 int iconst_0(); /*0x03*/
