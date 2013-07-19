@@ -3,12 +3,6 @@
 #define CAT1 1
 #define CAT2 2
 
-/** Seção de variáveis locais que é na verdade uma pilha de variaveis locais
-*/
-typedef struct LocalVarStack {
-
-} LocalVarStack;
-
 /** Seção de ambiente de execução.
 * Contém um ponteiro para a classe à qual o método pertence,
 * um ponteiro para o opcode da instrução sendo lida
@@ -40,11 +34,11 @@ typedef struct OperandStack {
     struct OperandStack *nextOperand;
 } OperandStack;
 
-/** O Frame é composto de uma lista de variáveis locais, uma pilha de operandos
+/** O Frame é composto de um array de variáveis locais, uma pilha de operandos
 * e um ambiente de execução dos métodos
 */
 typedef struct Frame {
-    LocalVarStack *topVar;
+    int *localVarArray;    // array de variaveis locais de 32 bits por slot
     ExecEnvirSection execEnvir;
     OperandStack *topOperand;
 } Frame;
