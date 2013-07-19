@@ -69,7 +69,7 @@ void stackInit(OperandStack**);
 * \param OperandStack** Endereço da pilha de operandos
 * \return Operando que foi desempilhado
 */
-OperandType popOperand(OperandStack**);
+Operand popOperand(OperandStack**);
 
 /** Função que verifica se a pilha de frames está vazia.
 * \param StackFrame* Ponteiro para a pilha de frames

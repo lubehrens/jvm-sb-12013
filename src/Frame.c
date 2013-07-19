@@ -14,9 +14,9 @@ void stackInit(OperandStack **stackAddress) {
 	*stackAddress = NULL;
 }
 
-OperandType popOperand(OperandStack **topAddress) {
+Operand popOperand(OperandStack **topAddress) {
 	OperandStack *p1;
-	OperandType operand;
+	Operand operand;
 	if (!emptyStack(*topAddress)) {
 		operand = (*topAddress)->operand;
 		p1 = *topAddress
