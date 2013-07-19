@@ -2,80 +2,99 @@
 #define LOADANDSTOREINSTRUCTIONS_H
 
 #include "Interpretador.h"
+#include "Frame.h"
 
-int aconst_null(); /*0x01*/
-int iconst_m1(); /*0x02*/
-int iconst_0(); /*0x03*/
-int iconst_1(); /*0x04*/
-int iconst_2(); /*0x05*/
-int iconst_3(); /*0x06*/
-int iconst_4(); /*0x07*/
-int iconst_5(); /*0x08*/
-int lconst_0(); /*0x09*/
-int lconst_1(); /*0x0A*/
-int fconst_0(); /*0x0B*/
-int fconst_1(); /*0x0C*/
-int fconst_2(); /*0x0D*/
-int dconst_0(); /*0x0E*/
-int dconst_1(); /*0x0F*/
-int bipush(); /*0x10*/
-int sipush(); /*0x11*/
-int ldc(); /*0x12*/
-int ldc_w(); /*0x13*/
-int ldc2_w(); /*0x14*/
+/** Insere na pilha de operandos do frame corrente uma referência nula */
+int aconst_null(Interpretador*); /*0x01*/
+/** Insere na pilha de operandos do frame corrente a constante int -1 */
+int iconst_m1(Interpretador*); /*0x02*/
+/** Insere na pilha de operandos do frame corrente a constante int 0 */
+int iconst_0(Interpretador*); /*0x03*/
+/** Insere na pilha de operandos do frame corrente a constante int 1 */
+int iconst_1(Interpretador*); /*0x04*/
+/** Insere na pilha de operandos do frame corrente a constante int 2 */
+int iconst_2(Interpretador*); /*0x05*/
+/** Insere na pilha de operandos do frame corrente a constante int 3 */
+int iconst_3(Interpretador*); /*0x06*/
+/** Insere na pilha de operandos do frame corrente a constante int 4 */
+int iconst_4(Interpretador*); /*0x07*/
+/** Insere na pilha de operandos do frame corrente a constante int 5 */
+int iconst_5(Interpretador*); /*0x08*/
+/** Insere na pilha de operandos do frame corrente a constante long 0 */
+int lconst_0(Interpretador*); /*0x09*/
+/** Insere na pilha de operandos do frame corrente a constante long 1 */
+int lconst_1(Interpretador*); /*0x0A*/
+/** Insere na pilha de operandos do frame corrente a constante float 0.0 */
+int fconst_0(Interpretador*); /*0x0B*/
+/** Insere na pilha de operandos do frame corrente a constante float 1.0 */
+int fconst_1(Interpretador*); /*0x0C*/
+/** Insere na pilha de operandos do frame corrente a constante float 2.0 */
+int fconst_2(Interpretador*); /*0x0D*/
+/** Insere na pilha de operandos do frame corrente a constante double 0.0 */
+int dconst_0(Interpretador*); /*0x0E*/
+/** Insere na pilha de operandos do frame corrente a constante double 1.0 */
+int dconst_1(Interpretador*); /*0x0F*/
+/** Insere na pilha de operandos do frame corrente o valor apontado pelo índice
+*   representado pelo byte que segue logo após o opcode
+*/
+int bipush(Interpretador*); /*0x10*/
+int sipush(Interpretador*); /*0x11*/
+int ldc(Interpretador*); /*0x12*/
+int ldc_w(Interpretador*); /*0x13*/
+int ldc2_w(Interpretador*); /*0x14*/
 
-int iload(); /*0x15*/
-int lload(); /*0x16*/
-int fload(); /*0x17*/
-int dload(); /*0x18*/
-int aload(); /*0x19*/
-int iload_0(); /*0x1A*/
-int iload_1(); /*0x1B*/
-int iload_2(); /*0x1C*/
-int iload_3(); /*0x1D*/
-int lload_0(); /*0x1E*/
-int lload_1(); /*0x1F*/
-int lload_2(); /*0x20*/
-int lload_3(); /*0x21*/
-int fload_0(); /*0x22*/
-int fload_1(); /*0x23*/
-int fload_2(); /*0x24*/
-int fload_3(); /*0x25*/
-int dload_0(); /*0x26*/
-int dload_1(); /*0x27*/
-int dload_2(); /*0x28*/
-int dload_3(); /*0x29*/
-int aload_0(); /*0x2A*/
-int aload_1(); /*0x2B*/
-int aload_2(); /*0x2C*/
-int aload_3(); /*0x2D*/
+int iload(Interpretador*); /*0x15*/
+int lload(Interpretador*); /*0x16*/
+int fload(Interpretador*); /*0x17*/
+int dload(Interpretador*); /*0x18*/
+int aload(Interpretador*); /*0x19*/
+int iload_0(Interpretador*); /*0x1A*/
+int iload_1(Interpretador*); /*0x1B*/
+int iload_2(Interpretador*); /*0x1C*/
+int iload_3(Interpretador*); /*0x1D*/
+int lload_0(Interpretador*); /*0x1E*/
+int lload_1(Interpretador*); /*0x1F*/
+int lload_2(Interpretador*); /*0x20*/
+int lload_3(Interpretador*); /*0x21*/
+int fload_0(Interpretador*); /*0x22*/
+int fload_1(Interpretador*); /*0x23*/
+int fload_2(Interpretador*); /*0x24*/
+int fload_3(Interpretador*); /*0x25*/
+int dload_0(Interpretador*); /*0x26*/
+int dload_1(Interpretador*); /*0x27*/
+int dload_2(Interpretador*); /*0x28*/
+int dload_3(Interpretador*); /*0x29*/
+int aload_0(Interpretador*); /*0x2A*/
+int aload_1(Interpretador*); /*0x2B*/
+int aload_2(Interpretador*); /*0x2C*/
+int aload_3(Interpretador*); /*0x2D*/
 
-int istore(); /*0x36*/
-int lstore(); /*0x37*/
-int fstore(); /*0x38*/
-int dstore(); /*0x39*/
-int astore(); /*0x3A*/
-int istore_0(); /*0x3B*/
-int istore_1(); /*0x3C*/
-int istore_2(); /*0x3D*/
-int istore_3(); /*0x3E*/
-int lstore_0(); /*0x3F*/
-int lstore_1(); /*0x40*/
-int lstore_2(); /*0x41*/
-int lstore_3(); /*0x42*/
-int fstore_0(); /*0x43*/
-int fstore_1(); /*0x44*/
-int fstore_2(); /*0x45*/
-int fstore_3(); /*0x46*/
-int dstore_0(); /*0x47*/
-int dstore_1(); /*0x48*/
-int dstore_2(); /*0x49*/
-int dstore_3(); /*0x4A*/
-int astore_0(); /*0x4B*/
-int astore_1(); /*0x4C*/
-int astore_2(); /*0x4D*/
-int astore_3(); /*0x4E*/
+int istore(Interpretador*); /*0x36*/
+int lstore(Interpretador*); /*0x37*/
+int fstore(Interpretador*); /*0x38*/
+int dstore(Interpretador*); /*0x39*/
+int astore(Interpretador*); /*0x3A*/
+int istore_0(Interpretador*); /*0x3B*/
+int istore_1(Interpretador*); /*0x3C*/
+int istore_2(Interpretador*); /*0x3D*/
+int istore_3(Interpretador*); /*0x3E*/
+int lstore_0(Interpretador*); /*0x3F*/
+int lstore_1(Interpretador*); /*0x40*/
+int lstore_2(Interpretador*); /*0x41*/
+int lstore_3(Interpretador*); /*0x42*/
+int fstore_0(Interpretador*); /*0x43*/
+int fstore_1(Interpretador*); /*0x44*/
+int fstore_2(Interpretador*); /*0x45*/
+int fstore_3(Interpretador*); /*0x46*/
+int dstore_0(Interpretador*); /*0x47*/
+int dstore_1(Interpretador*); /*0x48*/
+int dstore_2(Interpretador*); /*0x49*/
+int dstore_3(Interpretador*); /*0x4A*/
+int astore_0(Interpretador*); /*0x4B*/
+int astore_1(Interpretador*); /*0x4C*/
+int astore_2(Interpretador*); /*0x4D*/
+int astore_3(Interpretador*); /*0x4E*/
 
-int wide(); /*0xC4*/
+int wide(Interpretador*); /*0xC4*/
 
 #endif

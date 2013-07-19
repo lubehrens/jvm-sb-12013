@@ -7,9 +7,9 @@
 * ou seja, a Stack.
 */
 typedef struct StackFrame {
-    Frame *topFrame;
+    Frame frame;
     struct StackFrame *nextFrame;
-}
+} StackFrame;
 
 /** Estrutura que define um campo.
 * Contém o nome, o descritor e o tipo do field.
@@ -53,14 +53,14 @@ typedef struct ClassList {
     Field *staticFields;
     ObjectsList *objectsList;
     struct ClassList *nextClass;
-}
+} ClassList;
 
 /** O Interpretador possui uma referencia para o Frame mais recente da pilha de frames
 * e para a classe mais recente da lista de classes
 */
 typedef struct Interpretador {
-    StackFrame *topFrame;
-    ClassList *topClass;
+    StackFrame *topStackFrame;
+    ClassList *initClass;
 } Interpretador;
 
 #endif
