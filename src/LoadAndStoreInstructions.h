@@ -2,22 +2,41 @@
 #define LOADANDSTOREINSTRUCTIONS_H
 
 #include "Interpretador.h"
+#include "Frame.h"
 
+/** Insere na pilha de operandos do frame corrente uma referência nula */
 int aconst_null(Interpretador*); /*0x01*/
+/** Insere na pilha de operandos do frame corrente a constante int -1 */
 int iconst_m1(Interpretador*); /*0x02*/
+/** Insere na pilha de operandos do frame corrente a constante int 0 */
 int iconst_0(Interpretador*); /*0x03*/
+/** Insere na pilha de operandos do frame corrente a constante int 1 */
 int iconst_1(Interpretador*); /*0x04*/
+/** Insere na pilha de operandos do frame corrente a constante int 2 */
 int iconst_2(Interpretador*); /*0x05*/
+/** Insere na pilha de operandos do frame corrente a constante int 3 */
 int iconst_3(Interpretador*); /*0x06*/
+/** Insere na pilha de operandos do frame corrente a constante int 4 */
 int iconst_4(Interpretador*); /*0x07*/
+/** Insere na pilha de operandos do frame corrente a constante int 5 */
 int iconst_5(Interpretador*); /*0x08*/
+/** Insere na pilha de operandos do frame corrente a constante long 0 */
 int lconst_0(Interpretador*); /*0x09*/
+/** Insere na pilha de operandos do frame corrente a constante long 1 */
 int lconst_1(Interpretador*); /*0x0A*/
+/** Insere na pilha de operandos do frame corrente a constante float 0.0 */
 int fconst_0(Interpretador*); /*0x0B*/
+/** Insere na pilha de operandos do frame corrente a constante float 1.0 */
 int fconst_1(Interpretador*); /*0x0C*/
+/** Insere na pilha de operandos do frame corrente a constante float 2.0 */
 int fconst_2(Interpretador*); /*0x0D*/
+/** Insere na pilha de operandos do frame corrente a constante double 0.0 */
 int dconst_0(Interpretador*); /*0x0E*/
+/** Insere na pilha de operandos do frame corrente a constante double 1.0 */
 int dconst_1(Interpretador*); /*0x0F*/
+/** Insere na pilha de operandos do frame corrente o valor apontado pelo índice
+*   representado pelo byte que segue logo após o opcode
+*/
 int bipush(Interpretador*); /*0x10*/
 int sipush(Interpretador*); /*0x11*/
 int ldc(Interpretador*); /*0x12*/
