@@ -2,11 +2,10 @@ int emptyStack(OperandStack *top) {
 	return top == NULL ;
 }
 
-void pushOperand(OperandStack **topAddress, Operand operandToPush) OperandType operand, int operandType) {
+void pushOperand(OperandStack **topAddress, Operand operandToPush) {
 	OperandStack *p1;
 	p1 = malloc(sizeof(OperandStack));
 	p1->operand = operandToPush;
-	p1->operand->operandType = operandToPush->operandType;
 	p1->nextOperand = *topAddress;
 	*topAddress = p1;
 }
@@ -30,25 +29,24 @@ OperandType popOperand(OperandStack **topAddress) {
 	return operand;
 }
 
-int emptyFrameStack(FrameStack *topFrame) {
+int emptyStackFrame(StackFrame *topFrame) {
 	return topFrame == NULL ;
 }
 
-void frameStackInit(FrameStack **topFrame) {
+void frameStackInit(StackFrame **topFrame) {
 	*topFrame = NULL;
 }
 
-void pushFrame(Frame **topFrameAddress) {
+void pushFrame(StackFrame **topFrameAddress) {
 	Frame *p1;
-	p1 = malloc(sizeof(Frame));
+	p1 = malloc(sizeof(StackFrame));
 	p1->nextFrame = *topFrameAddress;
 	*topFrameAddress = p1;
-
 }
 
-void popFrame(Frame **topFrameAddress) {
+void popFrame(StackFrame **topFrameAddress) {
 	Frame *p1;
-	if (!emptyFrameStack(*topFrameAddress)) {
+	if (!emptyStackFrame(*topFrameAddress)) {
 		p1 = *topFrameAddress;
 		*topFrameAddress = (*topFrameAddress)->nextFrame;
 		free(p1);
@@ -58,11 +56,11 @@ void popFrame(Frame **topFrameAddress) {
 	}
 }
 
-void frameInit(ClassList *init, ClassFile classfile, Frame *frame, char* methodName, char* descriptor) {
+void frameInit(ClassList *init, ClassFile classfile, StackFrame *stackFrame, char* methodName, char* descriptor) {
 
 	ClassFile* classfile_aux;
-	methodInfo* method;
-	attributeInfo methodCode;
+	MethodInfo* method;
+	AttributeInfo methodCode;
 	u2 superClassIndex;
 	char superClassName[100];
 	int i;
@@ -72,7 +70,7 @@ void frameInit(ClassList *init, ClassFile classfile, Frame *frame, char* methodN
 	superClassIndex = classfile_aux->super_class;
 
 	/* Procura o metodo pelo nome e se não encontrar, procura na super classe */
-	while (classfile_aux != NULL && (method = buscaMetodoNome(*classfile_aux, methodName, descriptor)) == NULL && superClassIndex != 0) {
+	while (classfile_aux != NULL && (method = getMethodByName(*classfile_aux, methodName, descriptor)) == NULL && superClassIndex != 0) {
 
         superClassName = getUTF8(classfile_aux->constant_pool, classfile_aux->constant_pool[superClassIndex].info.classInfo.nameIndex));
 
@@ -94,17 +92,14 @@ void frameInit(ClassList *init, ClassFile classfile, Frame *frame, char* methodN
 		}
 	}
 
-    /* PROBLEMA AQUI: frame->constantPool?
-    * StackFrame->topoOperandStack?
-    */
-	StackFrame->frame->constantPool = classfile_aux->constant_pool;
-	//inicializando a pilha de operandos
-	stackInit(&(StackFrame->topoOperandStack));
-	//Copiando a referência do código do método a ser executado.
-	Frame->codigoAExecutar = methodCode.tipoInfo.code.code;
-	//inicializando o array de variáveis locais
-	Frame->arrayLocal = malloc(
-			methodCode.tipoInfo.code.maxLocals * sizeof(OperandType));
-	Frame->pc = Frame->codigoAExecutar;
-
+    /* belongingClass do frame recebe o constant_pool do classFile */
+	stackFrame->frame->execEnvir->belongingClass = classfile_aux->constant_pool;
+	/* inicializa a pilha de operandos */
+	stackInit(&(stackFrame->frame->topOperand));
+	/* seta o opcode do método que vai ser executado */
+	stackFrame->frame->execEnvir->currOpcode = methodCode.tipoInfo.code.code;
+	/* inicializa vetor de variáveis locais */
+	stackFrame->localVarArray = malloc(methodCode.tipoInfo.code.maxLocals * sizeof(int));
+	/* seta o pc */
+	stackFrame->execEnvir->pc = stackFrame->frame->execEnvir->currOpcode;
 }

@@ -1,12 +1,9 @@
 #ifndef METHODINVOCATIONINSTRUCTIONS_H
 #define METHODINVOCATIONINSTRUCTIONS_H
 
-int invokevirtual(); /*0xB6*/
-
-int invokespecial(); /*0xB7*/
-
-int invokestatic(); /*0xB8*/
-
-int invokeinterface(); /*0xB9*/
+int invokevirtual(Interpretador*); /*0xB6*/
+int invokespecial(Interpretador*); /*0xB7*/
+int invokestatic(Interpretador*); /*0xB8*/
+int invokeinterface(Interpretador*); /*0xB9*/
 
 #endif
