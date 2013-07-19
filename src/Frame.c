@@ -2,16 +2,16 @@ int emptyStack(OperandStack *top) {
 	return top == NULL ;
 }
 
-void pushOperando(OperandStack **topAddress, OperandType operand, int operandType) {
+void pushOperand(OperandStack **topAddress, Operand operandToPush) OperandType operand, int operandType) {
 	OperandStack *p1;
 	p1 = malloc(sizeof(OperandStack));
-	p1->operand = operandoPassado;
-	p1->operandType = operandoType;
+	p1->operand = operandToPush;
+	p1->operand->operandType = operandToPush->operandType;
 	p1->nextOperand = *topAddress;
 	*topAddress = p1;
 }
 
-void initializeStack(OperandStack **stackAddress) {
+void stackInit(OperandStack **stackAddress) {
 	*stackAddress = NULL;
 }
 
@@ -34,104 +34,77 @@ int emptyFrameStack(FrameStack *topFrame) {
 	return topFrame == NULL ;
 }
 
-void initializeFrameStack(FrameStack **topFrame) {
+void frameStackInit(FrameStack **topFrame) {
 	*topFrame = NULL;
 }
 
-/*
- * Função que coloca uma frame nova na pilha.
- *
- * !! ATENÇÃO !! - Inicializar a frame após dar o push.
- */
-void pushFrame(frame **endFrameAtual) {
-
-	frame *p1;
-
-	p1 = malloc(sizeof(frame));
-
-	p1->frameAbaixo = *endFrameAtual;
-	*endFrameAtual = p1;
+void pushFrame(Frame **topFrameAddress) {
+	Frame *p1;
+	p1 = malloc(sizeof(Frame));
+	p1->nextFrame = *topFrameAddress;
+	*topFrameAddress = p1;
 
 }
 
-/*
- * Função que retira uma frame da pilha de frames
- */
-void popFrame(frame **endFrameAtual) {
-
-	frame *p1;
-
-	if (!pilhaFramesVazia(*endFrameAtual)) {
-		p1 = *endFrameAtual;
-		*endFrameAtual = (*endFrameAtual)->frameAbaixo;
+void popFrame(Frame **topFrameAddress) {
+	Frame *p1;
+	if (!emptyFrameStack(*topFrameAddress)) {
+		p1 = *topFrameAddress;
+		*topFrameAddress = (*topFrameAddress)->nextFrame;
 		free(p1);
 	} else {
-		printf("ERRO em popFrame : pilha vazia\n");
+		printf("A pilha esta vazia\n");
 		exit(1);
 	}
-
 }
 
-/*
- * Função que inicializa uma frame, com o código correto a ser executado
- *
- * Caso o método que quer ser executado não possa ser achado na classe atual, procuramos nas super classes.
- */
-void inicializaFrame(listaClasses *inicioLista, ClassFile cf, frame *frame,
-		char* nomeMetodo, char* descriptor) {
+void frameInit(ClassList *init, ClassFile classfile, Frame *frame, char* methodName, char* descriptor) {
 
-	ClassFile* cfAux;
-	methodInfo* metodo;
-	attributeInfo codigoMetodo;
-	u2 indiceSuperClasse;
-	char nomeSuperClasse[100];
+	ClassFile* classfile_aux;
+	methodInfo* method;
+	attributeInfo methodCode;
+	u2 superClassIndex;
+	char superClassName[100];
 	int i;
 
-	metodo = NULL;
-	cfAux = &cf;
-	indiceSuperClasse = cfAux->super_class;
+	method = NULL;
+	classfile_aux = &classfile;
+	superClassIndex = classfile_aux->super_class;
 
-	// Achar o método pelo nome
-	// Se não acharmos, passamos para a super classe para ver se está lá
-	while (cfAux != NULL
-			&& (metodo = buscaMetodoNome(*cfAux, nomeMetodo, descriptor))
-					== NULL && indiceSuperClasse != 0) {
+	/* Procura o metodo pelo nome e se não encontrar, procura na super classe */
+	while (classfile_aux != NULL && (method = buscaMetodoNome(*classfile_aux, methodName, descriptor)) == NULL && superClassIndex != 0) {
 
-		strcpy(nomeSuperClasse,
-				buscaUTF8ConstPool(cfAux->constant_pool,
-						cfAux->constant_pool[indiceSuperClasse].info.classInfo.nameIndex));
+        superClassName = getUTF8(classfile_aux->constant_pool, classfile_aux->constant_pool[superClassIndex].info.classInfo.nameIndex));
 
-		cfAux = buscaClassFileNome(inicioLista, nomeSuperClasse);
-		if (cfAux != NULL ) {
-			indiceSuperClasse = cfAux->super_class;
+		classfile_aux = getClassFileByName(init, superClassName);
+		if (classfile_aux != NULL ) {
+			superClassIndex = classfile_aux->super_class;
 		}
 	}
 
-	// Não conseguimos achar o método :(
-	if (metodo == NULL ) {
-		printf("ERRO: NoSuchMethodError - %s %s\n", nomeMetodo, descriptor);
+	if (method == NULL ) {
+		printf("Metodo nao encontrado >> %s %s\n", methodName, descriptor);
 		exit(1);
 	}
 
-	//achar o atributo Code , percorre a lista de atributos buscando o atributo Code
-	for (i = 0; i < metodo->attributesCount; i++) {
-		if (strcmp(
-				buscaUTF8ConstPool(cfAux->constant_pool,
-						metodo->attributes[i].attributeNameIndex), "Code")
-				== 0) {
-			codigoMetodo = metodo->attributes[i];
+	for (i = 0; i < method->attributesCount; i++) {
+		if (strcmp(getUTF8(classfile_aux->constant_pool, method->attributes[i].attributeNameIndex), "Code")	== 0) {
+			methodCode = method->attributes[i];
 			break;
 		}
 	}
 
-	frame->constantPool = cfAux->constant_pool;
+    /* PROBLEMA AQUI: frame->constantPool?
+    * StackFrame->topoOperandStack?
+    */
+	StackFrame->frame->constantPool = classfile_aux->constant_pool;
 	//inicializando a pilha de operandos
-	inicializaPilha(&(frame->topoOperandStack));
+	stackInit(&(StackFrame->topoOperandStack));
 	//Copiando a referência do código do método a ser executado.
-	frame->codigoAExecutar = codigoMetodo.tipoInfo.code.code;
+	Frame->codigoAExecutar = methodCode.tipoInfo.code.code;
 	//inicializando o array de variáveis locais
-	frame->arrayLocal = malloc(
-			codigoMetodo.tipoInfo.code.maxLocals * sizeof(OperandType));
-	frame->pc = frame->codigoAExecutar;
+	Frame->arrayLocal = malloc(
+			methodCode.tipoInfo.code.maxLocals * sizeof(OperandType));
+	Frame->pc = Frame->codigoAExecutar;
 
 }
