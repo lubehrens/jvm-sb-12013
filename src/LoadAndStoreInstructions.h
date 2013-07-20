@@ -3,7 +3,10 @@
 
 #include "Interpretador.h"
 #include "Frame.h"
+#include "InstructionManager.h"
 
+/** Instrução chamada quando se tenta executar uma instrução não implementada */
+int nop(Interpretador*); /*0x00*/
 /** Insere na pilha de operandos do frame corrente uma referência nula */
 int aconst_null(Interpretador*); /*0x01*/
 /** Insere na pilha de operandos do frame corrente a constante int -1 */

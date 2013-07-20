@@ -135,4 +135,8 @@ int dconst_1(Interpretador*) {
     return 0;
 }
 
+/*0x10*/
+int bipush(Interpretador*) {
+
+}
 
