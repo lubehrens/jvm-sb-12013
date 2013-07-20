@@ -38,14 +38,14 @@ void frameStackInit(StackFrame **topFrame) {
 }
 
 void pushFrame(StackFrame **topFrameAddress) {
-	Frame *p1;
+	StackFrame *p1;
 	p1 = malloc(sizeof(StackFrame));
 	p1->nextFrame = *topFrameAddress;
 	*topFrameAddress = p1;
 }
 
 void popFrame(StackFrame **topFrameAddress) {
-	Frame *p1;
+	StackFrame *p1;
 	if (!emptyStackFrame(*topFrameAddress)) {
 		p1 = *topFrameAddress;
 		*topFrameAddress = (*topFrameAddress)->nextFrame;
@@ -57,7 +57,6 @@ void popFrame(StackFrame **topFrameAddress) {
 }
 
 void frameInit(ClassList *init, ClassFile classfile, StackFrame *stackFrame, char* methodName, char* descriptor) {
-
 	ClassFile* classfile_aux;
 	MethodInfo* method;
 	AttributeInfo methodCode;
