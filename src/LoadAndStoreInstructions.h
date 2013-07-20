@@ -3,6 +3,7 @@
 
 #include "Interpretador.h"
 #include "Frame.h"
+#include "ClassLoader/ClassStructure.h"
 #include "InstructionManager.h"
 
 /** Chamada para substituir instruções não implementadas */
@@ -37,16 +38,33 @@ int fconst_2(Interpretador*); /*0x0D*/
 int dconst_0(Interpretador*); /*0x0E*/
 /** Insere na pilha de operandos do frame corrente a constante double 1.0 */
 int dconst_1(Interpretador*); /*0x0F*/
-/** Insere na pilha de operandos do frame corrente o valor apontado pelo índice
+/** Insere na pilha de operandos do frame corrente o valor (u1) apontado pelo índice
 *   representado pelo byte que segue logo após o opcode
 */
 int bipush(Interpretador*); /*0x10*/
+/** Insere na pilha de operandos do frame corrente o valor (u2) apontado pelo índice
+*   representado pelos 2 bytes que seguem logo após o opcode
+*/
 int sipush(Interpretador*); /*0x11*/
+/** Insere na pilha de operandos do frame corrente o valor (32 bits) presente no pool de constantes
+*   apontado pelo índice representado pelo byte que segue logo após o opcode
+*/
 int ldc(Interpretador*); /*0x12*/
+/** Insere na pilha de operandos do frame corrente o valor (32 bits) presente no pool de constantes
+*   apontado pelo índice representado pelos 2 bytes que seguem logo após o opcode
+*/
 int ldc_w(Interpretador*); /*0x13*/
+/** Insere na pilha de operandos do frame corrente o valor (64 bits) presente no pool de constantes
+*   apontado pelo índice representado pelos 2 bytes que seguem logo após o opcode
+*/
 int ldc2_w(Interpretador*); /*0x14*/
-
+/** Insere na pilha de operandos do frame corrente o int presente no vetor de variaveis locais
+*   apontado pelo índice representado pelo byte que segue logo após o opcode
+*/
 int iload(Interpretador*); /*0x15*/
+/** Insere na pilha de operandos do frame corrente o long presente no vetor de variaveis locais
+*   apontado pelo índice (e índice + 1) representado pelo byte que segue logo após o opcode
+*/
 int lload(Interpretador*); /*0x16*/
 int fload(Interpretador*); /*0x17*/
 int dload(Interpretador*); /*0x18*/
