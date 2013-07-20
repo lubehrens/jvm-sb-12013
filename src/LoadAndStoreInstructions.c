@@ -1,5 +1,9 @@
 #include "LoadAndStoreInstructions.h"
 
+int nop(Interpretador*) {
+    return 0;
+}
+
 /*0x01*/
 int aconst_null(Interpretador* interpretador) {
     Operand operand;
