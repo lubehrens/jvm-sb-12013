@@ -5,7 +5,7 @@ int ifeq(Interpretador* interpretador) {
     Operand operand;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand = popOperand(interpretador->topStackFrame->frame->topOperand);
+    operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -23,7 +23,7 @@ int ifne(Interpretador* interpretador) {
     Operand operand;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand = popOperand(interpretador->topStackFrame->frame->topOperand);
+    operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -41,7 +41,7 @@ int iflt(Interpretador* interpretador) {
     Operand operand;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand = popOperand(interpretador->topStackFrame->frame->topOperand);
+    operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -59,7 +59,7 @@ int ifge(Interpretador* interpretador) {
     Operand operand;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand = popOperand(interpretador->topStackFrame->frame->topOperand);
+    operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -77,7 +77,7 @@ int ifgt(Interpretador* interpretador) {
     Operand operand;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand = popOperand(interpretador->topStackFrame->frame->topOperand);
+    operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -95,7 +95,7 @@ int ifle(Interpretador* interpretador) {
     Operand operand;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand = popOperand(interpretador->topStackFrame->frame->topOperand);
+    operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -113,8 +113,8 @@ int if_icmpeq(Interpretador* interpretador) {
     Operand operand1, operand2;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand2 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor2 */
-    operand1 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor1 */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor2 */
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor1 */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -132,8 +132,8 @@ int if_icmpne(Interpretador* interpretador) {
     Operand operand1, operand2;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand2 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor2 */
-    operand1 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor1 */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor2 */
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor1 */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -151,8 +151,8 @@ int if_icmplt(Interpretador* interpretador) {
     Operand operand1, operand2;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand2 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor2 */
-    operand1 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor1 */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor2 */
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor1 */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -170,8 +170,8 @@ int if_icmpge(Interpretador* interpretador) {
     Operand operand1, operand2;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand2 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor2 */
-    operand1 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor1 */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor2 */
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor1 */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -189,8 +189,8 @@ int if_icmpgt(Interpretador* interpretador) {
     Operand operand1, operand2;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand2 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor2 */
-    operand1 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor1 */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor2 */
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor1 */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -208,8 +208,8 @@ int if_icmple(Interpretador* interpretador) {
     Operand operand1, operand2;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand2 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor2 */
-    operand1 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor1 */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor2 */
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor1 */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -227,8 +227,8 @@ int if_acmpeq(Interpretador* interpretador) {
     Operand operand1, operand2;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand2 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor2 */
-    operand1 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor1 */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor2 */
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor1 */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -246,8 +246,8 @@ int if_acmpne(Interpretador* interpretador) {
     Operand operand1, operand2;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand2 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor2 */
-    operand1 = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor1 */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor2 */
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor1 */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -309,7 +309,7 @@ int ifnull(Interpretador* interpretador) {
     Operand operand;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor */
+    operand = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -327,7 +327,7 @@ int ifnonnull(Interpretador* interpretador) {
     Operand operand;
     u2 offset;
     u1 branchbyte1, branchbyte2;
-    operand = popOperand(interpretador->topStackFrame->frame->topOperand); /* pega o valor */
+    operand = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o valor */
     branchbyte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
     interpretador->topStackFrame->frame->execEnvir->pc++;
     branchbyte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);

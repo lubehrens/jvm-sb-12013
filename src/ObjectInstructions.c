@@ -2,6 +2,13 @@
 
 /*0x2E*/
 int iaload(Interpretador* interpretador) {
+    Operand operand1, operand2, operand_result;
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o index */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o arrayref */
+    operand_result.operandType.intType = *(operand2.operandType.referenceType[operand1.operandType.intType]);
+    operand_result.type32_64 = CAT1;
+    pushOperand(&(interpretador->topStackFrame->frame->topOperand), operand_result);
+    return 0;
 }
 
 /*0x2F*/
