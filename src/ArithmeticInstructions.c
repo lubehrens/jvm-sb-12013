@@ -400,6 +400,13 @@ int lxor(Interpretador* interpretador) {
 
 /*0x84*/
 int iinc(Interpretador* interpretador) {
+    u2 index;
+    u1 constant;
+    index = *(interpretador->topStackFrame->frame->execEnvir->pc);
+    interpretador->topStackFrame->frame->execEnvir->pc++;
+    constant = *(interpretador->topStackFrame->frame->execEnvir->pc);
+    interpretador->topStackFrame->frame->localVarArray[index] += (int) constant;
+	return 0;
 }
 
 /*0x94*/

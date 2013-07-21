@@ -67,7 +67,7 @@ int f2i(Interpretador* interpretador) {
 int f2l(Interpretador* interpretador) {
     Operand operand1, operand_result;
     operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand));
-    operand_result.operandType.longType = (long) operand1.operandType.floatType;
+    operand_result.operandType.longType = (long long) operand1.operandType.floatType;
     pushOperand(&(interpretador->topStackFrame->frame->topOperand), operand_result);
 	return 0;
 }
@@ -94,7 +94,7 @@ int d2i(Interpretador* interpretador) {
 int d2l(Interpretador* interpretador) {
     Operand operand1, operand_result;
     operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand));
-    operand_result.operandType.longType = (long) operand1.operandType.doubleType;
+    operand_result.operandType.longType = (long long) operand1.operandType.doubleType;
     pushOperand(&(interpretador->topStackFrame->frame->topOperand), operand_result);
 	return 0;
 }
