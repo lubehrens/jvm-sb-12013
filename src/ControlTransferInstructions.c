@@ -290,8 +290,18 @@ int jsr(Interpretador* interpretador) {
 
 /*0xA9*/
 int ret(Interpretador* interpretador) {
-    u1 index;
-    index = *(interpretador->topStackFrame->frame->execEnvir->pc);
+    u2 index;
+    if(isWide){
+        int byte1, byte2;
+        byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
+        interpretador->topStackFrame->frame->execEnvir->pc++;
+        byte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
+        //interpretador->topStackFrame->frame->execEnvir->pc++;
+        index = (byte1 << 8) | byte2;
+    } else {
+        index = *(interpretador->topStackFrame->frame->execEnvir->pc);
+        //interpretador->topStackFrame->frame->execEnvir->pc++;
+    }
     interpretador->topStackFrame->frame->execEnvir->pc = interpretador->topStackFrame->frame->localVarArray[index];
     return 0;
 }

@@ -13,18 +13,46 @@ int iaload(Interpretador* interpretador) {
 
 /*0x2F*/
 int laload(Interpretador* interpretador) {
+    Operand operand1, operand2, operand_result;
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o index */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o arrayref */
+    operand_result.operandType.longType = *(operand2.operandType.referenceType[operand1.operandType.intType]);
+    operand_result.type32_64 = CAT2;
+    pushOperand(&(interpretador->topStackFrame->frame->topOperand), operand_result);
+    return 0;
 }
 
 /*0x30*/
 int faload(Interpretador* interpretador) {
+    Operand operand1, operand2, operand_result;
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o index */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o arrayref */
+    operand_result.operandType.floatType = *(operand2.operandType.referenceType[operand1.operandType.intType]);
+    operand_result.type32_64 = CAT1;
+    pushOperand(&(interpretador->topStackFrame->frame->topOperand), operand_result);
+    return 0;
 }
 
 /*0x31*/
 int daload(Interpretador* interpretador) {
+    Operand operand1, operand2, operand_result;
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o index */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o arrayref */
+    operand_result.operandType.doubleType = *(operand2.operandType.referenceType[operand1.operandType.intType]);
+    operand_result.type32_64 = CAT2;
+    pushOperand(&(interpretador->topStackFrame->frame->topOperand), operand_result);
+    return 0;
 }
 
 /*0x32*/
 int aaload(Interpretador* interpretador) {
+    Operand operand1, operand2, operand_result;
+    operand1 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o index */
+    operand2 = popOperand(&(interpretador->topStackFrame->frame->topOperand)); /* pega o arrayref */
+    operand_result.operandType.referenceType = *(operand2.operandType.referenceType[operand1.operandType.intType]);
+    operand_result.type32_64 = CAT1;
+    pushOperand(&(interpretador->topStackFrame->frame->topOperand), operand_result);
+    return 0;
 }
 
 /*0x33*/

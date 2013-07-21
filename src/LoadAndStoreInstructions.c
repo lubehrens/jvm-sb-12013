@@ -1,6 +1,6 @@
 #include "LoadAndStoreInstructions.h"
 
-int nop(Interpretador*) {
+int nop(Interpretador* interpretador) {
     return 0;
 }
 
@@ -14,7 +14,7 @@ int aconst_null(Interpretador* interpretador) {
 }
 
 /*0x02*/
-int iconst_m1(Interpretador*) {
+int iconst_m1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = -1;
@@ -23,7 +23,7 @@ int iconst_m1(Interpretador*) {
 }
 
 /*0x03*/
-int iconst_0(Interpretador*) {
+int iconst_0(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = 0;
@@ -32,7 +32,7 @@ int iconst_0(Interpretador*) {
 }
 
 /*0x04*/
-int iconst_1(Interpretador*) {
+int iconst_1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = 1;
@@ -41,7 +41,7 @@ int iconst_1(Interpretador*) {
 }
 
 /*0x05*/
-int iconst_2(Interpretador*) {
+int iconst_2(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = 2;
@@ -50,7 +50,7 @@ int iconst_2(Interpretador*) {
 }
 
 /*0x06*/
-int iconst_3(Interpretador*) {
+int iconst_3(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = 3;
@@ -59,7 +59,7 @@ int iconst_3(Interpretador*) {
 }
 
 /*0x07*/
-int iconst_4(Interpretador*) {
+int iconst_4(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = 4;
@@ -68,7 +68,7 @@ int iconst_4(Interpretador*) {
 }
 
 /*0x08*/
-int iconst_5(Interpretador*) {
+int iconst_5(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = 5;
@@ -77,7 +77,7 @@ int iconst_5(Interpretador*) {
 }
 
 /*0x09*/
-int lconst_0(Interpretador*) {
+int lconst_0(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     operand.operandType.longType = 0;
@@ -86,7 +86,7 @@ int lconst_0(Interpretador*) {
 }
 
 /*0x0A*/
-int lconst_1(Interpretador*) {
+int lconst_1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     operand.operandType.longType = 1;
@@ -95,7 +95,7 @@ int lconst_1(Interpretador*) {
 }
 
 /*0x0B*/
-int fconst_0(Interpretador*) {
+int fconst_0(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.floatType = 0.0;
@@ -104,7 +104,7 @@ int fconst_0(Interpretador*) {
 }
 
 /*0x0C*/
-int fconst_1(Interpretador*) {
+int fconst_1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.floatType = 1.0;
@@ -113,7 +113,7 @@ int fconst_1(Interpretador*) {
 }
 
 /*0x0D*/
-int fconst_2(Interpretador*) {
+int fconst_2(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.floatType = 2.0;
@@ -122,7 +122,7 @@ int fconst_2(Interpretador*) {
 }
 
 /*0x0E*/
-int dconst_0(Interpretador*) {
+int dconst_0(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     operand.operandType.doubleType = 0.0;
@@ -131,7 +131,7 @@ int dconst_0(Interpretador*) {
 }
 
 /*0x0F*/
-int dconst_1(Interpretador*) {
+int dconst_1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     operand.operandType.doubleType = 1.0;
@@ -254,7 +254,7 @@ int ldc2_w(Interpretador* interpretador) {
 int iload(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -275,7 +275,7 @@ int iload(Interpretador* interpretador) {
 int lload(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -299,7 +299,7 @@ int lload(Interpretador* interpretador) {
 int fload(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -322,7 +322,7 @@ int fload(Interpretador* interpretador) {
 int dload(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -343,10 +343,10 @@ int dload(Interpretador* interpretador) {
 }
 
 /*0x19*/
-int aload(Interpretador*) {
+int aload(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -364,7 +364,7 @@ int aload(Interpretador*) {
 }
 
 /*0x1A*/
-int iload_0(Interpretador*) {
+int iload_0(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = interpretador->topStackFrame->frame->localVarArray[0];
@@ -373,7 +373,7 @@ int iload_0(Interpretador*) {
 }
 
 /*0x1B*/
-int iload_1(Interpretador*) {
+int iload_1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = interpretador->topStackFrame->frame->localVarArray[1];
@@ -382,7 +382,7 @@ int iload_1(Interpretador*) {
 }
 
 /*0x1C*/
-int iload_2(Interpretador*) {
+int iload_2(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = interpretador->topStackFrame->frame->localVarArray[2];
@@ -391,7 +391,7 @@ int iload_2(Interpretador*) {
 }
 
 /*0x1D*/
-int iload_3(Interpretador*) {
+int iload_3(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     operand.operandType.intType = interpretador->topStackFrame->frame->localVarArray[3];
@@ -400,7 +400,7 @@ int iload_3(Interpretador*) {
 }
 
 /*0x1E*/
-int lload_0(Interpretador*) {
+int lload_0(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     LongToInt lToi;
@@ -412,7 +412,7 @@ int lload_0(Interpretador*) {
 }
 
 /*0x1F*/
-int lload_1(Interpretador*) {
+int lload_1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     LongToInt lToi;
@@ -424,7 +424,7 @@ int lload_1(Interpretador*) {
 }
 
 /*0x20*/
-int lload_2(Interpretador*) {
+int lload_2(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     LongToInt lToi;
@@ -436,7 +436,7 @@ int lload_2(Interpretador*) {
 }
 
 /*0x21*/
-int lload_3(Interpretador*) {
+int lload_3(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     LongToInt lToi;
@@ -448,7 +448,7 @@ int lload_3(Interpretador*) {
 }
 
 /*0x22*/
-int fload_0(Interpretador*) {
+int fload_0(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     FloatToInt fToi;
@@ -459,7 +459,7 @@ int fload_0(Interpretador*) {
 }
 
 /*0x23*/
-int fload_1(Interpretador*) {
+int fload_1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     FloatToInt fToi;
@@ -470,7 +470,7 @@ int fload_1(Interpretador*) {
 }
 
 /*0x24*/
-int fload_2(Interpretador*) {
+int fload_2(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     FloatToInt fToi;
@@ -481,7 +481,7 @@ int fload_2(Interpretador*) {
 }
 
 /*0x25*/
-int fload_3(Interpretador*) {
+int fload_3(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     FloatToInt fToi;
@@ -492,7 +492,7 @@ int fload_3(Interpretador*) {
 }
 
 /*0x26*/
-int dload_0(Interpretador*) {
+int dload_0(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     DoubleToInt dToi;
@@ -504,7 +504,7 @@ int dload_0(Interpretador*) {
 }
 
 /*0x27*/
-int dload_1(Interpretador*) {
+int dload_1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     DoubleToInt dToi;
@@ -516,7 +516,7 @@ int dload_1(Interpretador*) {
 }
 
 /*0x28*/
-int dload_2(Interpretador*) {
+int dload_2(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     DoubleToInt dToi;
@@ -528,7 +528,7 @@ int dload_2(Interpretador*) {
 }
 
 /*0x29*/
-int dload_3(Interpretador*) {
+int dload_3(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT2;
     DoubleToInt dToi;
@@ -540,7 +540,7 @@ int dload_3(Interpretador*) {
 }
 
 /*0x2A*/
-int aload_0(Interpretador*) {
+int aload_0(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     VoidToInt vToi;
@@ -551,7 +551,7 @@ int aload_0(Interpretador*) {
 }
 
 /*0x2B*/
-int aload_1(Interpretador*) {
+int aload_1(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     VoidToInt vToi;
@@ -562,7 +562,7 @@ int aload_1(Interpretador*) {
 }
 
 /*0x2C*/
-int aload_2(Interpretador*) {
+int aload_2(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     VoidToInt vToi;
@@ -573,7 +573,7 @@ int aload_2(Interpretador*) {
 }
 
 /*0x2D*/
-int aload_3(Interpretador*) {
+int aload_3(Interpretador* interpretador) {
     Operand operand;
     operand.type32_64 = CAT1;
     VoidToInt vToi;
@@ -587,7 +587,7 @@ int aload_3(Interpretador*) {
 int istore(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -604,10 +604,10 @@ int istore(Interpretador* interpretador) {
 }
 
 /*0x37*/
-int lstore(Interpretador*) {
+int lstore(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -627,10 +627,10 @@ int lstore(Interpretador*) {
 }
 
 /*0x38*/
-int fstore(Interpretador*) {
+int fstore(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -647,10 +647,10 @@ int fstore(Interpretador*) {
 }
 
 /*0x39*/
-int dstore(Interpretador*) {
+int dstore(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -670,10 +670,10 @@ int dstore(Interpretador*) {
 }
 
 /*0x3A*/
-int astore(Interpretador*) {
+int astore(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
-    u1 index;
+    u2 index;
     if(isWide){
         int byte1, byte2;
         byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
@@ -690,7 +690,7 @@ int astore(Interpretador*) {
 }
 
 /*0x3B*/
-int istore_0(Interpretador*) {
+int istore_0(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[0] = operand.operandType.intType;
@@ -698,7 +698,7 @@ int istore_0(Interpretador*) {
 }
 
 /*0x3C*/
-int istore_1(Interpretador*) {
+int istore_1(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[1] = operand.operandType.intType;
@@ -706,7 +706,7 @@ int istore_1(Interpretador*) {
 }
 
 /*0x3D*/
-int istore_2(Interpretador*) {
+int istore_2(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[2] = operand.operandType.intType;
@@ -714,7 +714,7 @@ int istore_2(Interpretador*) {
 }
 
 /*0x3E*/
-int istore_3(Interpretador*) {
+int istore_3(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[3] = operand.operandType.intType;
@@ -722,7 +722,7 @@ int istore_3(Interpretador*) {
 }
 
 /*0x3F*/
-int lstore_0(Interpretador*) {
+int lstore_0(Interpretador* interpretador) {
     u1 index = 0;
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
@@ -734,7 +734,7 @@ int lstore_0(Interpretador*) {
 }
 
 /*0x40*/
-int lstore_1(Interpretador*) {
+int lstore_1(Interpretador* interpretador) {
     u1 index = 1;
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
@@ -746,7 +746,7 @@ int lstore_1(Interpretador*) {
 }
 
 /*0x41*/
-int lstore_2(Interpretador*) {
+int lstore_2(Interpretador* interpretador) {
     u1 index = 2;
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
@@ -758,7 +758,7 @@ int lstore_2(Interpretador*) {
 }
 
 /*0x42*/
-int lstore_3(Interpretador*) {
+int lstore_3(Interpretador* interpretador) {
     u1 index = 3;
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
@@ -770,7 +770,7 @@ int lstore_3(Interpretador*) {
 }
 
 /*0x43*/
-int fstore_0(Interpretador*) {
+int fstore_0(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[0] = operand.operandType.intType;
@@ -778,7 +778,7 @@ int fstore_0(Interpretador*) {
 }
 
 /*0x44*/
-int fstore_1(Interpretador*) {
+int fstore_1(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[1] = operand.operandType.intType;
@@ -786,7 +786,7 @@ int fstore_1(Interpretador*) {
 }
 
 /*0x45*/
-int fstore_2(Interpretador*) {
+int fstore_2(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[2] = operand.operandType.intType;
@@ -794,7 +794,7 @@ int fstore_2(Interpretador*) {
 }
 
 /*0x46*/
-int fstore_3(Interpretador*) {
+int fstore_3(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[3] = operand.operandType.intType;
@@ -802,7 +802,7 @@ int fstore_3(Interpretador*) {
 }
 
 /*0x47*/
-int dstore_0(Interpretador*) {
+int dstore_0(Interpretador* interpretador) {
     u1 index = 0;
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
@@ -814,7 +814,7 @@ int dstore_0(Interpretador*) {
 }
 
 /*0x48*/
-int dstore_1(Interpretador*) {
+int dstore_1(Interpretador* interpretador) {
     u1 index = 1;
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
@@ -826,7 +826,7 @@ int dstore_1(Interpretador*) {
 }
 
 /*0x49*/
-int dstore_2(Interpretador*) {
+int dstore_2(Interpretador* interpretador) {
     u1 index = 2;
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
@@ -838,7 +838,7 @@ int dstore_2(Interpretador*) {
 }
 
 /*0x4A*/
-int dstore_3(Interpretador*) {
+int dstore_3(Interpretador* interpretador) {
     u1 index = 3;
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
@@ -850,7 +850,7 @@ int dstore_3(Interpretador*) {
 }
 
 /*0x4B*/
-int astore_0(Interpretador*) {
+int astore_0(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[0] = operand.operandType.intType; // Acessa o valor void* como tipo int
@@ -858,7 +858,7 @@ int astore_0(Interpretador*) {
 }
 
 /*0x4C*/
-int astore_1(Interpretador*) {
+int astore_1(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[1] = operand.operandType.intType; // Acessa o valor void* como tipo int
@@ -866,7 +866,7 @@ int astore_1(Interpretador*) {
 }
 
 /*0x4D*/
-int astore_2(Interpretador*) {
+int astore_2(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[2] = operand.operandType.intType; // Acessa o valor void* como tipo int
@@ -874,7 +874,7 @@ int astore_2(Interpretador*) {
 }
 
 /*0x4E*/
-int astore_3(Interpretador*) {
+int astore_3(Interpretador* interpretador) {
     Operand operand;
     operand = popOperand(&(interpretador->topStackFrame->frame->topOperand));
     interpretador->topStackFrame->frame->localVarArray[3] = operand.operandType.intType; // Acessa o valor void* como tipo int

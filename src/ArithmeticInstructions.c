@@ -401,10 +401,25 @@ int lxor(Interpretador* interpretador) {
 /*0x84*/
 int iinc(Interpretador* interpretador) {
     u2 index;
-    u1 constant;
-    index = *(interpretador->topStackFrame->frame->execEnvir->pc);
-    interpretador->topStackFrame->frame->execEnvir->pc++;
-    constant = *(interpretador->topStackFrame->frame->execEnvir->pc);
+    u2 constant;
+    if(isWide){
+        int byte1, byte2;
+        byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
+        interpretador->topStackFrame->frame->execEnvir->pc++;
+        byte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
+        interpretador->topStackFrame->frame->execEnvir->pc++;
+        index = (byte1 << 8) | byte2;
+        byte1 = *(interpretador->topStackFrame->frame->execEnvir->pc);
+        interpretador->topStackFrame->frame->execEnvir->pc++;
+        byte2 = *(interpretador->topStackFrame->frame->execEnvir->pc);
+        interpretador->topStackFrame->frame->execEnvir->pc++;
+        constant = (byte1 << 8) | byte2;
+    } else {
+        index = *(interpretador->topStackFrame->frame->execEnvir->pc);
+        interpretador->topStackFrame->frame->execEnvir->pc++;
+        constant = *(interpretador->topStackFrame->frame->execEnvir->pc);
+        interpretador->topStackFrame->frame->execEnvir->pc++;
+    }
     interpretador->topStackFrame->frame->localVarArray[index] += (int) constant;
 	return 0;
 }
