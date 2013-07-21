@@ -55,31 +55,31 @@ int (*InstructionArray[])(Interpretador *interpretador) = {
     iaload,// 0x33
     iaload,// 0x34
     iaload,// 0x35
-    store,// 0x36
-    store,// 0x37
-    store,// 0x38
-    store,// 0x39
-    store,// 0x3A
-    store_0,// 0x3B
-    store_1,// 0x3C
-    store_2,// 0x3D
-    store_3,// 0x3E
-    store_0,// 0x3F
-    store_1,// 0x40
-    store_2,// 0x41
-    store_3,// 0x42
-    store_0,// 0x43
-    store_1,// 0x44
-    store_2,// 0x45
-    store_3,// 0x46
-    store_0,// 0x47
-    store_1,// 0x48
-    store_2,// 0x49
-    store_3,// 0x4A
-    store_0,// 0x4B
-    store_1,// 0x4C
-    store_2,// 0x4D
-    store_3,// 0x4E
+    istore,// 0x36
+    lstore,// 0x37
+    fstore,// 0x38
+    dstore,// 0x39
+    astore,// 0x3A
+    istore_0,// 0x3B
+    istore_1,// 0x3C
+    istore_2,// 0x3D
+    istore_3,// 0x3E
+    lstore_0,// 0x3F
+    lstore_1,// 0x40
+    lstore_2,// 0x41
+    lstore_3,// 0x42
+    fstore_0,// 0x43
+    fstore_1,// 0x44
+    fstore_2,// 0x45
+    fstore_3,// 0x46
+    dstore_0,// 0x47
+    dstore_1,// 0x48
+    dstore_2,// 0x49
+    dstore_3,// 0x4A
+    astore_0,// 0x4B
+    astore_1,// 0x4C
+    astore_2,// 0x4D
+    astore_3,// 0x4E
     iastore,// 0x4F
     lastore,// 0x50
     fastore,// 0x51

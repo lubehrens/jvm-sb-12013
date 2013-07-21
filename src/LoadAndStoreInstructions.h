@@ -66,33 +66,113 @@ int iload(Interpretador*); /*0x15*/
 *   apontado pelo índice (e índice + 1) representado pelo byte que segue logo após o opcode
 */
 int lload(Interpretador*); /*0x16*/
+/** Insere na pilha de operandos do frame corrente o float presente no vetor de variaveis locais
+*   apontado pelo índice representado pelo byte que segue logo após o opcode
+*/
 int fload(Interpretador*); /*0x17*/
+/** Insere na pilha de operandos do frame corrente o double presente no vetor de variaveis locais
+*   apontado pelo índice (e índice + 1) representado pelo byte que segue logo após o opcode
+*/
 int dload(Interpretador*); /*0x18*/
+/** Insere na pilha de operandos do frame corrente a referência de objeto presente no vetor de variaveis locais
+*   apontado pelo índice representado pelo byte que segue logo após o opcode
+*/
 int aload(Interpretador*); /*0x19*/
+/** Insere na pilha de operandos do frame corrente o int presente no vetor de variaveis locais
+*   apontado pelo índice 0
+*/
 int iload_0(Interpretador*); /*0x1A*/
+/** Insere na pilha de operandos do frame corrente o int presente no vetor de variaveis locais
+*   apontado pelo índice 1
+*/
 int iload_1(Interpretador*); /*0x1B*/
+/** Insere na pilha de operandos do frame corrente o int presente no vetor de variaveis locais
+*   apontado pelo índice 2
+*/
 int iload_2(Interpretador*); /*0x1C*/
+/** Insere na pilha de operandos do frame corrente o int presente no vetor de variaveis locais
+*   apontado pelo índice 3
+*/
 int iload_3(Interpretador*); /*0x1D*/
+/** Insere na pilha de operandos do frame corrente o long presente no vetor de variaveis locais
+*   apontado pelo índice 0
+*/
 int lload_0(Interpretador*); /*0x1E*/
+/** Insere na pilha de operandos do frame corrente o long presente no vetor de variaveis locais
+*   apontado pelo índice 1
+*/
 int lload_1(Interpretador*); /*0x1F*/
+/** Insere na pilha de operandos do frame corrente o long presente no vetor de variaveis locais
+*   apontado pelo índice 2
+*/
 int lload_2(Interpretador*); /*0x20*/
+/** Insere na pilha de operandos do frame corrente o long presente no vetor de variaveis locais
+*   apontado pelo índice 3
+*/
 int lload_3(Interpretador*); /*0x21*/
+/** Insere na pilha de operandos do frame corrente o float presente no vetor de variaveis locais
+*   apontado pelo índice 0
+*/
 int fload_0(Interpretador*); /*0x22*/
+/** Insere na pilha de operandos do frame corrente o float presente no vetor de variaveis locais
+*   apontado pelo índice 1
+*/
 int fload_1(Interpretador*); /*0x23*/
+/** Insere na pilha de operandos do frame corrente o float presente no vetor de variaveis locais
+*   apontado pelo índice 2
+*/
 int fload_2(Interpretador*); /*0x24*/
+/** Insere na pilha de operandos do frame corrente o float presente no vetor de variaveis locais
+*   apontado pelo índice 3
+*/
 int fload_3(Interpretador*); /*0x25*/
+/** Insere na pilha de operandos do frame corrente o double presente no vetor de variaveis locais
+*   apontado pelo índice 0
+*/
 int dload_0(Interpretador*); /*0x26*/
+/** Insere na pilha de operandos do frame corrente o double presente no vetor de variaveis locais
+*   apontado pelo índice 1
+*/
 int dload_1(Interpretador*); /*0x27*/
+/** Insere na pilha de operandos do frame corrente o double presente no vetor de variaveis locais
+*   apontado pelo índice 2
+*/
 int dload_2(Interpretador*); /*0x28*/
+/** Insere na pilha de operandos do frame corrente o double presente no vetor de variaveis locais
+*   apontado pelo índice 3
+*/
 int dload_3(Interpretador*); /*0x29*/
+/** Insere na pilha de operandos do frame corrente a referência de objeto presente no vetor de variaveis locais
+*   apontado pelo índice 0
+*/
 int aload_0(Interpretador*); /*0x2A*/
+/** Insere na pilha de operandos do frame corrente a referência de objeto presente no vetor de variaveis locais
+*   apontado pelo índice 1
+*/
 int aload_1(Interpretador*); /*0x2B*/
+/** Insere na pilha de operandos do frame corrente a referência de objeto presente no vetor de variaveis locais
+*   apontado pelo índice 2
+*/
 int aload_2(Interpretador*); /*0x2C*/
+/** Insere na pilha de operandos do frame corrente a referência de objeto presente no vetor de variaveis locais
+*   apontado pelo índice 3
+*/
 int aload_3(Interpretador*); /*0x2D*/
-
+/** Retira da pilha de operandos o primeiro valor e insere no vetor de variáveis locais como int
+*   no indice representado pelo byte que segue logo após o opcode
+*/
 int istore(Interpretador*); /*0x36*/
+/** Retira da pilha de operandos o primeiro valor e insere no vetor de variáveis locais como long
+*   no indice (e indice + 1) representado pelo byte que segue logo após o opcode
+*/
 int lstore(Interpretador*); /*0x37*/
+/** Retira da pilha de operandos o primeiro valor e insere no vetor de variáveis locais como float
+*   no indice representado pelo byte que segue logo após o opcode
+*/
 int fstore(Interpretador*); /*0x38*/
+/** Retira da pilha de operandos o primeiro valor e insere no vetor de variáveis locais como double
+*   no indice (e indice + 1)  representado pelo byte que segue logo após o opcode
+*/
 int dstore(Interpretador*); /*0x39*/
 int astore(Interpretador*); /*0x3A*/
 int istore_0(Interpretador*); /*0x3B*/
