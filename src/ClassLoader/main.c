@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
 	{
 		classpath = argv[2];
 		class = readClass(classpath);
-
 		if(atoi(argv[1]) == 0)
 		{
 

@@ -351,9 +351,6 @@ int putstatic(Interpretador* interpretador) {
     /* Pega o descriptor a partir do fieldTypeIndex */
     descriptor = getUTF8(interpretador->topStackFrame->frame->execEnvir->belongingClass, fieldTypeIndex);
 
-	// Verificamos se estamos requisitando uma classe que já está carregada
-	cf = verificaClasse(p, nomeClasse);
-
     /* Checa se a classe ja foi carregada (inicializa uma se ainda nao foi) */
     classFile = isLoaded(interpretador, className);
 

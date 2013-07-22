@@ -19,38 +19,4 @@ classLoader.exe 1 Carta.class
 
 *** O QUE FALTA FAZER / DÚVIDAS / PROBLEMAS ENCONTRADOS ***
 
-- comentar o código
-
-
-=> GENERAL INFORMATION
-- imprimir o nome do accessFlags (dúvida sobre quais são para imprimir)
-FAZER IF COM TODAS AS COMBINAÇÕES
-TESTAR VERSÃO E MUDANÇA DO NOME DO ARQUIVO
-"Se n é um índice válido para uma constante do tipo long ou double, então o índice n+1 é inválido!" >> é a resposta para o problema com doubles e longs?
-
-
-=> CONSTANT POOL
-- problema com alguns name and type do fieldref (imprimindo um char a mais do que deveria)
-- problema com alguns name and type do methodref (imprimindo um char a mais do que deveria)
-- provável problema com alguns name and type do methodref (imprimindo um char a mais do que deveria) achar arquivo com esse tipo de método
-- problema com algumas string (imprimindo um char a mais do que deveria)
-- problema com escrita de long e double TESTAR USAR DEFAULT NO SWITCH
-- problema com alguns name and type class name (imprimindo um char a mais do que deveria)
-
-
-=> INTERFACES
-- não sei o que é para imprimir
-
-
-=> FIELDS 
-- problema com escrita de alguns nomes (imprimindo mais do que deveria)
-
-
-=> METHODS 
-- problema com escrita de alguns nomes (imprimindo mais do que deveria) 
-- o que imprimir de coisas especificas?
-- imprimir o bytecode em mnemônicos
-
-
-=> ATTRIBUTES 
-- o que é para imprimir?
+- problema com double e long continua na hora de imprimir mas está lendo corretamente
