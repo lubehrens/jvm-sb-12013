@@ -28,6 +28,23 @@ float convertU4ToFloat(u4 u4input)
 
 		convertedU4 = s*m*(pow(2, (e - 150)));
 	}
-	
+
 	return convertedU4;
+}
+
+int methodArgsCount(char* descriptor) {
+    int argNumber = 0, i = 0;
+    char* aux;
+
+    strcpy(aux, descriptor);
+    while (aux[i] != ')') {
+        if (aux[i] != '(' && aux[i] != '[') {
+            argNumber++;
+            if (aux[i] == 'L') {
+                while (aux[i] != ';') i++;
+            }
+        }
+        i++;
+    }
+	return argNumber;
 }
