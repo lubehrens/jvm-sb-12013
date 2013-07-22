@@ -54,6 +54,13 @@ typedef struct Frame {
 */
 int emptyStack(OperandStack*);
 
+/** Função que verifica o número de slots (32 bits) ocupados pelos primeiros argumentos.
+* \param OperandStack* Ponteiro para a pilha de operandos
+* \param int Número de argumentos a serem verificados
+* \return int Número de slots ocupados pelos argumentos
+*/
+int countSlots(OperandStack* topOperand, int argNumber);
+
 /** Função que coloca um operando na pilha de operandos.
 * \param OperandStack** Endereço da pilha de operandos
 * \param Operand Operando a ser empilhado

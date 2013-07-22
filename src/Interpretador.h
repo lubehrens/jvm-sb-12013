@@ -2,6 +2,7 @@
 #define INTERPRETADOR_H
 
 #include "Frame.h"
+#include "ClassLoader/AuxiliarFunctions.h"
 
 /** O StackFrame é a pilha de frames da JVM.
 * ou seja, a Stack.
@@ -62,5 +63,20 @@ typedef struct Interpretador {
     StackFrame *topStackFrame;
     ClassList *initClass;
 } Interpretador;
+
+/** Função de inicialização da lista de classes carregadas */
+void initClassList(ClassList**);
+/** Função que inicializa o vetor de campos estáticos de um elemento ClassList */
+void initStaticFields(ClassList*, ClassFile);
+/** Função de inserção de elemento na lista de classes carregadas */
+void appendClassList(ClassList**, ClassFile);
+/** Função que carrega a classe em memória, se ela não estiver já carregada */
+ClassFile* loadClass(Interpretador*, char*);
+/** Função de inicialização da main, passando o que foi lido da linha de comando */
+void mainInit(char* className, Interpretador* interpretador, int, char**);
+/** Função de inicialização dos demais métodos */
+void methodInit(char*, char*, char*, Interpretador*, int);
+/** Função de execução de um método */
+void methodExec(Interpretador*);
 
 #endif

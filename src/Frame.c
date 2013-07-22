@@ -2,6 +2,23 @@ int emptyStack(OperandStack *top) {
 	return top == NULL ;
 }
 
+int countSlots(OperandStack* p1,int argNumber) {
+    OperandStack* p2;
+    Operand operand;
+    int i, slots = 0;
+
+    stackInit(&p2);
+    for (i = 0; i < argNumber; i++, slots++) {
+        operand = popOperand(&p1);
+        pushOperand(&p2, operand);
+        if (operand.type32_64 == CAT2) slots++;
+    }
+    for (i = 0; i < argNumber; i++) {
+        pushOperand(&p1, popOperand(&p2));
+    }
+    return slots;
+}
+
 void pushOperand(OperandStack **topAddress, Operand operandToPush) {
 	OperandStack *p1;
 	p1 = malloc(sizeof(OperandStack));

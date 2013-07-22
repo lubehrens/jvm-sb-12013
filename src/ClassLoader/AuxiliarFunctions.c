@@ -48,3 +48,32 @@ int methodArgsCount(char* descriptor) {
     }
 	return argNumber;
 }
+
+ClassFile* getClassFileByName(ClassList* init, char* className) {
+
+	u2 classNameIndex;
+	char* classNameAux;
+	ClassList* cListAux = init;
+
+	while (cListAux != NULL) {
+        classNameIndex = cListAux->classFile.constantPool[cListAux->classFile.thisClass].info.classInfo.nameIndex;
+        classNameAux = cListAux->classFile.constantPool[classNameIndex].info.Utf8Info.bytes;
+        if (strcmp(classNameAux, className) == 0)
+            return &(cListAux->classFile);
+        cListAux = cListAux->nextClass;
+	}
+	return NULL;
+}
+
+MethodInfo* getMethod(ClassFile cFile, char* methodName, char* methodDescriptor) {
+    int i;
+    char* methodNameAux, methodDescriptorAux;
+
+	for (i = 0; i < cFile.methodsCount; i++) {
+	    methodNameAux = cFile.constantPool[cFile.methods[i].nameIndex].info.Utf8Info.bytes;
+        methodDescriptorAux = cFile.constantPool[cFile.methods[i].descriptorIndex].info.Utf8Info.bytes;
+        if (strcmp(methodNameAux, methodName) == 0 && strcmp(methodDescriptorAux, methodDescriptor) == 0)
+            return &(cFile.methods[i]);
+	}
+	return NULL ;
+}
