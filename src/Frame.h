@@ -3,6 +3,13 @@
 #define CAT1 1
 #define CAT2 2
 
+/** Estrutura que modela o array que será usado nas instruções de objetos
+*/
+typedef struct Array {
+	int arraySize, type;
+	Operand* array;
+} Array;
+
 /** Seção de ambiente de execução.
 * Contém um ponteiro para a classe à qual o método pertence,
 * um ponteiro para o opcode da instrução sendo lida
@@ -25,6 +32,9 @@ typedef struct Operand {
         float floatType;
         double doubleType;
         void* referenceType;
+        char byteType;
+        u1 charType;
+        short shortType;
     } operandType;
 } Operand;
 

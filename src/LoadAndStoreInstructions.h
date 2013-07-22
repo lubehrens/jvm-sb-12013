@@ -174,6 +174,9 @@ int fstore(Interpretador*); /*0x38*/
 *   no indice (e indice + 1)  representado pelo byte que segue logo após o opcode
 */
 int dstore(Interpretador*); /*0x39*/
+/** Retira da pilha de operandos o primeiro valor e insere no vetor de variáveis locais como reference
+*   no indice (e indice + 1)  representado pelo byte que segue logo após o opcode
+*/
 int astore(Interpretador*); /*0x3A*/
 int istore_0(Interpretador*); /*0x3B*/
 int istore_1(Interpretador*); /*0x3C*/
